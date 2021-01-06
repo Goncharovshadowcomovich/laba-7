@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+int main(void)
+{
+    char line[100];
+    int i = 0;
+    int start;
+    int counting = 0;
+    int max = 0;
+    printf(" Enter the string :");
+    gets_s(line);
+    printf(" String without long word :");
+    while (line[i] != '\0')                                         // поиск максимальной длины слова и его начала
+    {
+        if ((line[i] != ' ') && (line[i] != '.') && (line[i] != ','))
+        {
+            counting++;
+            if (counting > max)
+            {
+                
+                max = counting;
+                start = i - max + 1;
+
+            }
+        }
+        else
+            counting = 0;
+        i++;
+    }
+    
+    i = start;
+    while (i < (100 - max))                             //перезапись
+    {
+        line[i] = line[i + max];
+        i++;
+    }
+    puts(line);
+    return 0;
+}
